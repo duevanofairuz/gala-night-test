@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Fashion Disaster Fix Gala Night</title>
+	<meta id="viewport" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="mobile-web-app-capable" content="yes">
+	
+	<link rel="shortcut icon" type="image/png" href="./favicon.png">
+		
+	<script src="https://cdn.y8.com/minimal-sdk/2-0/y8.min.js"></script>
+	<script type="text/javascript" src="./fashion_disaster_fix_gala_night.js"></script>
+	
+	<script>
+		window.addEventListener ("touchmove", function (event) { event.preventDefault (); }, { capture: false, passive: false });
+		if (typeof window.devicePixelRatio != 'undefined' && window.devicePixelRatio > 2) {
+			var meta = document.getElementById ("viewport");
+			meta.setAttribute ('content', 'width=device-width, initial-scale=' + (2 / window.devicePixelRatio) + ', user-scalable=no');
+		}
+	</script>
+	
+	<style>
+		html,body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+		#openfl-content { background: #000000; width: 100%; height: 100%; }
+		@font-face {
+			font-family: 'Arial Rounded MT Bold';
+			src: url('fonts/ArialRoundedMTBold.eot?#iefix') format('embedded-opentype'),
+			url('fonts/ArialRoundedMTBold.woff') format('woff'),
+			url('fonts/ArialRoundedMTBold.ttf') format('truetype'),
+			url('fonts/ArialRoundedMTBold.svg#Arial%20Rounded%20MT%20Bold') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Baloo Regular';
+			src: url('fonts/Baloo-Regular.eot?#iefix') format('embedded-opentype'),
+			url('fonts/Baloo-Regular.woff') format('woff'),
+			url('fonts/Baloo-Regular.ttf') format('truetype'),
+			url('fonts/Baloo-Regular.svg#Baloo%20Regular') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Bombardier';
+			src: url('fonts/bombardier.eot?#iefix') format('embedded-opentype'),
+			url('fonts/bombardier.woff') format('woff'),
+			url('fonts/bombardier.ttf') format('truetype'),
+			url('fonts/bombardier.svg#Bombardier') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+		@font-face {
+			font-family: 'Rebel Kids';
+			src: url('fonts/RebelKidsRegular.eot?#iefix') format('embedded-opentype'),
+			url('fonts/RebelKidsRegular.woff') format('woff'),
+			url('fonts/RebelKidsRegular.ttf') format('truetype'),
+			url('fonts/RebelKidsRegular.svg#Rebel%20Kids') format('svg');
+			font-weight: normal;
+			font-style: normal;
+		}
+	</style>
+</head>
+<body>
+	<noscript>This webpage makes extensive use of JavaScript. Please enable JavaScript in your web browser to view this page.</noscript>
+	<div id="openfl-content"></div>
+	<script type="text/javascript">
+		isLogin		 = false;
+		isCheckLogin = false;
+		nickname 	 = "";
+		loginFail	 = function(){};
+		loginSuccess = function(){};
+		
+		window.addEventListener("y8sdk.ready", function() {
+			console.log("Y8 SDK ready event received");
+			y8Sdk = y8.sdk();
+
+			let appConfig = {
+				appId: "6a6711bfcc52e7005810d04d",
+				autoLogin: true
+			};
+
+			let adConfig = {
+				gameId: "270893",
+				test: true,
+				preloadAdBreaks: "auto",
+				sound: "on",
+				onReady: () => console.log("Y8 Ads ready")
+			};
+
+			y8Sdk.init(appConfig, adConfig);
+			console.log("Y8 SDK initialized");
+			y8Sdk.onAuth((user, error) => {
+				isCheckLogin = true;
+				if (error) {
+					loginFail();
+					console.log("Y8 Auth error:", error);
+					return;
+				}
+				if (!user) {
+					loginFail();
+					console.log("Y8 User: Guest / Not logged in");
+					return;
+				}
+				else {
+					isLogin  = true;
+					nickname = user.nickname;
+					loginSuccess();
+				}
+				console.log("Y8 User:", user);
+				console.log("Username:", user.nickname);
+			});
+
+		}, { once: true });
+
+		if (window.y8 && window.y8.emitReadyEvent) {
+			window.y8.emitReadyEvent();
+			lime.embed ("fashion_disaster_fix_gala_night", "openfl-content", 0, 0, { parameters: {} });
+		}
+	</script>
+</body>
+</html>
